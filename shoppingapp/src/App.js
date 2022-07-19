@@ -1,21 +1,22 @@
 import './App.css';
 import Login from './components/Login';
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Products from './components/Products';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 
-function App() {
-  // const bioData = [
-  //   {id:0,firstname:"shehbaz",lastname:"waasi",occupation:"react dev"},
-  //   {id:1,firstname:"Aditya",lastname:"varma",occupation:"react dev"}
-  // ]
-  return (
-    <div className="App">
-      {/* {
-        bioData.map((data)=>{
-          return <h1>firstname:{data.firstname} , lastname:{data.lastname}, occupation:{data.occupation}</h1>
-        }
-        )
-      } */}
-      <Login/>
-    </div>
+function App()  {
+  return(
+      <div className='App'>
+        <Navbar/>
+        <Sidebar/>
+      <BrowserRouter>
+      <Routes>
+        <Route path='/' element = {<Login />}></Route>  
+        <Route path='/Products' element = {<Products />}></Route>
+      </Routes>
+      </BrowserRouter>
+      </div>
   );
 }
 

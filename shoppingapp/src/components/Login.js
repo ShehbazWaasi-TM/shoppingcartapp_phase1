@@ -1,6 +1,8 @@
 import React,{useState} from 'react'
+import {useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate()
     const [email, setEmail] = useState("");
     const [password,setPassword] = useState("") 
     const [allEntry, setallEntry] = useState([])
@@ -19,12 +21,14 @@ const Login = () => {
             console.log(allEntry)
             setEmail("")
             setPassword("")
+            navigate('/Products')
         }
         
     }
   return (
     <>
-      <form action="" onSubmit={submitForm}>
+    <div className='login'>
+    <form action="" onSubmit={submitForm}>
         <div className='email'>
             <label htmlFor="email">Email:</label>
             <input type="email" name='email' id='email' autoComplete='off' value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="enter your email" />
@@ -36,6 +40,7 @@ const Login = () => {
 
         <button className='login-btn' type='submit'>Login</button>
       </form>
+    </div>   
     </>
   )
 }

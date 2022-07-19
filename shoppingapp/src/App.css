@@ -42,6 +42,12 @@
   width: 100%;
   height: 100vh;
   position: relative;
+}
+
+.login{
+  width: 100%;
+  height: 100vh;
+  position: relative;
   background-image: url("../public/istockphoto-1306668349-170667a.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -82,4 +88,32 @@ form{
 .login-btn{
   color: green;
   padding: 10px;
+}
+
+.navbar{
+  width: 100%;
+  height: 50px;
+  background-color: antiquewhite;
+  margin: 0px;
+}
+
+.navbar>h2{
+  margin: 0px;
+}
+
+.sidebar{
+  height: 100px;
+  background-color: blanchedalmond;
+  margin-right: 0%;
+}
+
+
+
+.singleproduct{
+  width: 350px;
+}
+
+.allProducts{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
 }
