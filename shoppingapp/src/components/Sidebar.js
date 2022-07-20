@@ -19,10 +19,34 @@ const Sidebar = ({store, change}) => {
         console.log("newsortstore", newstore)  
         change(newstore) 
     }
+    const filterbySmartphones = (catItem) =>{
+        const results = [...store].filter((oneproduct)=>{
+            return oneproduct.category===catItem
+        });
+        console.log("results" , results)
+        setNewStore(results)
+        change(newstore)
+    }
+    const filterbylaptops = (catItem) =>{
+        const results = [...store].filter((oneproduct)=>{
+            return oneproduct.category===catItem
+        });
+        console.log("results" , results)
+        setNewStore(results)
+        change(newstore)
+    }
+    const filterbyfragrance = (catItem) =>{
+        const results = [...store].filter((oneproduct)=>{
+            return oneproduct.category===catItem
+        });
+        console.log("results" , results)
+        setNewStore(results)
+        change(newstore)
+    }
 
   return (
     <div className='sidebar'>
-        <label htmlFor="filter">filter</label>
+        {/* <label htmlFor="filter">filter</label>
         <select name="filter" id="">
             <option value="brand">
                 <label htmlFor="brand">brand</label>
@@ -40,7 +64,11 @@ const Sidebar = ({store, change}) => {
             <option value="stock">
                stock
             </option>
-        </select>
+        </select> */}
+
+        <button onClick={()=>filterbySmartphones("smartphones")}>smartphones</button>
+        <button onClick={()=>filterbylaptops("laptops")}>laptops</button>
+        <button onClick={()=>filterbyfragrance("fragrances")}>fragrances</button>
         <button onClick={sortbyprice}>sort on price</button>
         <button onClick={sortbyrating}>sort on rating</button>
         <button onClick={sortbyDiscountPercentage}>sort on discountPercentage</button>
