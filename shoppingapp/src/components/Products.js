@@ -21,7 +21,7 @@ const Products = () => {
     <div >
       <div>
         <Navbar/>
-        <Sidebar store={store} change={setStore}/>
+        <Sidebar store={store} change={setStore} allItems={productsdata.products}/>
       </div>
       <div className='allProducts' >
       {store.map((singleProduct)=>(

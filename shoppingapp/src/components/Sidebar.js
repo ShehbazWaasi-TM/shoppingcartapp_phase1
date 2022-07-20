@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 
-const Sidebar = ({store, change}) => {
+const Sidebar = ({store, change , allItems}) => {
     console.log('store', store)
+    const [orginalData, setOriginaldata] = useState(store)
+    console.log("orginaldata", orginalData)
     const [newstore, setNewStore] = useState(store)
     const sortbyprice = () =>{
         const sortProduct = [...store].sort((a,b)=> a.price > b.price ? 1 :-1)
@@ -43,29 +45,13 @@ const Sidebar = ({store, change}) => {
         setNewStore(results)
         change(newstore)
     }
+    const filterbyallitems = () =>{
+        change(orginalData)
+    }
 
   return (
     <div className='sidebar'>
-        {/* <label htmlFor="filter">filter</label>
-        <select name="filter" id="">
-            <option value="brand">
-                <label htmlFor="brand">brand</label>
-                <select name="brand" id="">
-                    <option value="iphone">iphone</option>
-                    <option value="iphone">iphone</option>
-                </select>
-            </option>
-            <option value="category">
-                category
-            </option>
-            <option value="title">
-               title
-            </option>
-            <option value="stock">
-               stock
-            </option>
-        </select> */}
-
+        <button onClick={filterbyallitems}>allProducts</button>
         <button onClick={()=>filterbySmartphones("smartphones")}>smartphones</button>
         <button onClick={()=>filterbylaptops("laptops")}>laptops</button>
         <button onClick={()=>filterbyfragrance("fragrances")}>fragrances</button>
