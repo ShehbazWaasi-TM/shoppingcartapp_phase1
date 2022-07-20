@@ -1,13 +1,36 @@
-import React from 'react';
-import productsdata from "../products.json"
+import React, { useEffect, useState } from 'react';
+import productsdata from "../products.json";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
+import { Link } from 'react-router-dom';
+import ProductDetailes from "./ProductDetails";
+
 const Products = () => {
+    const [store,setStore]       = useState(productsdata.products)
+    const [selected,setSelected] = useState(null)
     const allProducts = productsdata.products
     console.log(allProducts)
+    if(selected !== null){
+      return(
+        <ProductDetailes values={selected} />
+      )
+    } 
+
+
   return (
-    <div className='allProducts'>
-        {allProducts.map((singleProduct)=>(
-            <div className='singleproduct'>
-                <div> <img src={singleProduct.thumbnail} width="350px" height="250px" alt="product Thumbnail"></img></div>
+    <div >
+      <div>
+        <Navbar/>
+        <Sidebar store={store} change={setStore}/>
+      </div>
+      <div className='allProducts' >
+      {store.map((singleProduct)=>(
+            <div className='singleproduct' key={singleProduct.id}>
+                <div>
+                  <Link to={`/products/${singleProduct.id}`}  >
+                   <img src={singleProduct.thumbnail} width="350px" height="250px" alt="product Thumbnail"></img>
+                  </Link>
+                </div>
                 <div>
                     <h3>{singleProduct.title}</h3>
                     <h3>{singleProduct.brand}</h3>
@@ -15,12 +38,16 @@ const Products = () => {
                <div>
                      <h3>Price: Rs{singleProduct.price}</h3>
                      <h3>Rating: {singleProduct.rating}</h3>
+                     <h3>discount:{singleProduct.discountPercentage}%</h3>
                </div>
-               <div>
-
-               </div>
+               
+               <button onClick={()=>setSelected(singleProduct)}  >
+                            View Product Details
+                </button>
             </div> 
         ))}
+      </div>
+        
     </div>
   )
 }

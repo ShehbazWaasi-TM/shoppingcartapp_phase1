@@ -1,6 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const Sidebar = () => {
+const Sidebar = ({store, change}) => {
+    console.log('store', store)
+    const [newstore, setNewStore] = useState(store)
+    const sortbyprice = () =>{
+        const sortProduct = [...store].sort((a,b)=> a.price > b.price ? 1 :-1)
+        setNewStore(sortProduct)
+        change(newstore) 
+    }
+    const sortbyrating = () =>{
+        const sortrating = [...store].sort((a,b)=> a.rating > b.rating ? 1 :-1)
+        setNewStore(sortrating) 
+        change(newstore) 
+    }
+    const sortbyDiscountPercentage = () =>{
+        const sortDiscountPercentage = [...store].sort((a,b)=> a.discountPercentage > b.discountPercentage ? 1 :-1)
+        setNewStore(sortDiscountPercentage)
+        console.log("newsortstore", newstore)  
+        change(newstore) 
+    }
+
   return (
     <div className='sidebar'>
         <label htmlFor="filter">filter</label>
@@ -22,6 +41,9 @@ const Sidebar = () => {
                stock
             </option>
         </select>
+        <button onClick={sortbyprice}>sort on price</button>
+        <button onClick={sortbyrating}>sort on rating</button>
+        <button onClick={sortbyDiscountPercentage}>sort on discountPercentage</button>
       
     </div>
   )
