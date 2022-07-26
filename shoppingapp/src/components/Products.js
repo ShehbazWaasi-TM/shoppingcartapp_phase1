@@ -6,15 +6,37 @@ import { Link } from 'react-router-dom';
 import ProductDetailes from "./ProductDetails";
 
 const Products = () => {
-    const [store,setStore]       = useState(productsdata.products)
+    const [store,setStore]       = useState()
     const [selected,setSelected] = useState(null)
-    const allProducts = productsdata.products
-    console.log(allProducts)
+    // const allProducts = productsdata.products
+    // console.log(allProducts)
+  
+
+    useEffect (()=>{
+      const all =  async() =>{
+        const getall = await fetch("https://dummyjson.com/products",{
+          method:"GET"
+        })
+        console.log("getall" , getall)
+        const res = await getall.json()
+        console.log("res", res)
+        console.log(res.products)
+        setStore(res.products)
+      }
+      all()
+    },[])
+
     if(selected !== null){
       return(
         <ProductDetailes values={selected} />
       )
-    } 
+      }
+    
+    
+    // useEffect(()=>{
+    //   all()
+    // },[])
+   
 
 
   return (
@@ -24,7 +46,7 @@ const Products = () => {
         <Sidebar store={store} change={setStore} allItems={productsdata.products}/>
       </div>
       <div className='allProducts' >
-      {store.map((singleProduct)=>(
+      {store && store.map((singleProduct)=>(
             <div className='singleproduct' key={singleProduct.id}>
                 <div>
                   <Link to={`/products/${singleProduct.id}`}  >
