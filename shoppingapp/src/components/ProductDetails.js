@@ -1,8 +1,19 @@
 import React from 'react'
 import Carousel from 'react-bootstrap/Carousel';
+import Addtocart from './Addtocart';
+
+
+
 const ProductDetails = ({values}) => {
   return (
     <>
+    <Addtocart />
+    <hr/>
+    <section className='cart-info'>
+      <h6>Shopping cart</h6>
+      <p>you have <span>0</span> items in Cart</p>
+    </section>
+    <div className='product-details'>
     <Carousel >
     <Carousel.Item>
       <img
@@ -53,6 +64,8 @@ const ProductDetails = ({values}) => {
           <p> {values.description}</p>
           
         </div>
+    </div>
+   
       
     </>
   )

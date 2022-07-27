@@ -6,10 +6,11 @@ import { Link } from 'react-router-dom';
 import ProductDetailes from "./ProductDetails";
 
 const Products = () => {
+
+    const allProducts = productsdata.products
+    console.log(allProducts)
     const [store,setStore]       = useState()
     const [selected,setSelected] = useState(null)
-    // const allProducts = productsdata.products
-    // console.log(allProducts)
   
 
     useEffect (()=>{
@@ -32,18 +33,19 @@ const Products = () => {
       )
       }
     
-    
     // useEffect(()=>{
     //   all()
     // },[])
-   
-
-
+    let sidebar
+    if (store!==undefined){
+      sidebar = <Sidebar store={store} change={setStore} allItems={productsdata.products}/>
+    }
   return (
     <div >
       <div>
         <Navbar/>
-        <Sidebar store={store} change={setStore} allItems={productsdata.products}/>
+        {sidebar}
+        
       </div>
       <div className='allProducts' >
       {store && store.map((singleProduct)=>(

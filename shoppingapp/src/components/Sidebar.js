@@ -5,11 +5,17 @@ const Sidebar = ({store, change , allItems}) => {
     const [orginalData, setOriginaldata] = useState(store)
     console.log("orginaldata", orginalData)
     const [newstore, setNewStore] = useState(store)
+    console.log("newstore", store)
+
+
+    //sorting d data
     const sortbyprice = () =>{
         const sortProduct = [...store].sort((a,b)=> a.price > b.price ? 1 :-1)
+        console.log("store in price", store)
         setNewStore(sortProduct)
         change(newstore) 
     }
+
     const sortbyrating = () =>{
         const sortrating = [...store].sort((a,b)=> a.rating > b.rating ? 1 :-1)
         setNewStore(sortrating) 
@@ -21,6 +27,8 @@ const Sidebar = ({store, change , allItems}) => {
         console.log("newsortstore", newstore)  
         change(newstore) 
     }
+
+    //filtering d data
     const filterbySmartphones = (catItem) =>{
         const results = [...store].filter((oneproduct)=>{
             return oneproduct.category===catItem
