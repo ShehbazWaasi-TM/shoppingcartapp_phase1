@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import productsdata from "../products.json";
-import Navbar from "../components/Navbar";
+import React, { useEffect,useState } from 'react';
+// import productsdata from "../products.json";
 import Sidebar from "../components/Sidebar";
-import { Link } from 'react-router-dom';
 import ProductDetailes from "./ProductDetails";
+import { Link } from 'react-router-dom';
+import Addtocart from './Addtocart';
+
+
 
 const Products = () => {
 
-    const allProducts = productsdata.products
-    console.log(allProducts)
+
+    // const allProducts = productsdata.products
+    // console.log(allProducts)
+    const [allData, setAllData] = useState()
     const [store,setStore]       = useState()
     const [selected,setSelected] = useState(null)
+    const [countItems, setCountItems] = useState(0)
+    const [addItem, setAddItem]       = useState()
+    console.log("additem" ,addItem)
   
 
     useEffect (()=>{
@@ -23,29 +30,31 @@ const Products = () => {
         console.log("res", res)
         console.log(res.products)
         setStore(res.products)
+        setAllData(res.products)
       }
       all()
     },[])
 
     if(selected !== null){
       return(
-        <ProductDetailes values={selected} />
+        <>
+          <ProductDetailes values={selected} />
+        </>
       )
       }
-    
-    // useEffect(()=>{
-    //   all()
-    // },[])
+
+      
+
     let sidebar
     if (store!==undefined){
-      sidebar = <Sidebar store={store} change={setStore} allItems={productsdata.products}/>
+      sidebar = <Sidebar store={store} change={setStore} allItems={allData}/>
     }
   return (
     <div >
       <div>
-        <Navbar/>
+        {/* <Navbar/> */}
+        <Addtocart count={countItems}/>
         {sidebar}
-        
       </div>
       <div className='allProducts' >
       {store && store.map((singleProduct)=>(
@@ -64,10 +73,18 @@ const Products = () => {
                      <h3>Rating: {singleProduct.rating}</h3>
                      <h3>discount:{singleProduct.discountPercentage}%</h3>
                </div>
-               
-               <button onClick={()=>setSelected(singleProduct)}  >
-                            View Product Details
+
+               {/* <ProductContext.Provider value={singleProduct}>
+                          {Children}
+               </ProductContext.Provider> */}
+
+               <button onClick={()=>setSelected(singleProduct)}>
+                                      View Product Details
                 </button>
+
+                <div>
+                  <button className='cart-btn' onClick={()=>{setCountItems(countItems+1); setAddItem(singleProduct)}}>Add to Cart</button>
+                </div>
             </div> 
         ))}
       </div>
@@ -76,4 +93,5 @@ const Products = () => {
   )
 }
 
-export default Products
+export default Products;
+// export {ProductContext};

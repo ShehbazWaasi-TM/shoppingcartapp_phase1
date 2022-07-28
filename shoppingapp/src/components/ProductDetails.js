@@ -1,17 +1,27 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel';
 import Addtocart from './Addtocart';
+// import Products from './Products';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const ProductDetails = ({values}) => {
+  // const oneProduct = useContext(ProductContext)
+  // console.log("oneproduct", oneProduct)
+  let navigate = useNavigate();
+  // const [countItems, setCountItems] = useState(0)
+
+  // const continueShopping = () =>{
+  //   navigate('/Products')
+  // }
   return (
     <>
-    <Addtocart />
+    {/* <Addtocart count={countItems} /> */}
     <hr/>
     <section className='cart-info'>
       <h6>Shopping cart</h6>
-      <p>you have <span>0</span> items in Cart</p>
+      {/* <p>you have <span>{countItems}</span> items in Cart</p> */}
     </section>
     <div className='product-details'>
     <Carousel >
@@ -62,7 +72,11 @@ const ProductDetails = ({values}) => {
 
           <p className="card-text">Ratings ⭐ {values.rating}</p>
           <p> {values.description}</p>
-          
+          {/* <div>
+            <button className='cart-btn' onClick={()=>setCountItems(countItems+1)}   >Add to Cart</button>
+    
+          </div>
+          */}
         </div>
     </div>
    

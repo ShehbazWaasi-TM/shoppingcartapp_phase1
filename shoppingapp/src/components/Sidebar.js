@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 
 const Sidebar = ({store, change , allItems}) => {
     console.log('store', store)
-    const [orginalData, setOriginaldata] = useState(store)
-    console.log("orginaldata", orginalData)
+    // const [orginalData, setOriginaldata] = useState(store)
+    // console.log("orginaldata", orginalData)
     const [newstore, setNewStore] = useState(store)
     console.log("newstore", store)
 
@@ -54,18 +54,18 @@ const Sidebar = ({store, change , allItems}) => {
         change(newstore)
     }
     const filterbyallitems = () =>{
-        change(orginalData)
+        change(allItems)
     }
 
   return (
     <div className='sidebar'>
-        <button onClick={filterbyallitems}>allProducts</button>
+        <button onClick={()=>filterbyallitems()}>allProducts</button>
         <button onClick={()=>filterbySmartphones("smartphones")}>smartphones</button>
         <button onClick={()=>filterbylaptops("laptops")}>laptops</button>
         <button onClick={()=>filterbyfragrance("fragrances")}>fragrances</button>
-        <button onClick={sortbyprice}>sort on price</button>
-        <button onClick={sortbyrating}>sort on rating</button>
-        <button onClick={sortbyDiscountPercentage}>sort on discountPercentage</button>
+        <button onClick={()=>sortbyprice()}>sort on price</button>
+        <button onClick={()=>sortbyrating()}>sort on rating</button>
+        <button onClick={()=>sortbyDiscountPercentage()}>sort on discountPercentage</button>
       
     </div>
   )
