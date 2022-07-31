@@ -1,19 +1,35 @@
 import './App.css';
+import {React, useState} from 'react';
 import Login from './components/Login';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Products from './components/Products';
 import ProductDetails from './components/ProductDetails';
+import Cartpage from './components/Cartpage';
 
 
 function App()  {
+
+  
+  const [cartItems, setCartItems] = useState([])
+  const [total, setTotal] = useState(0)
+
+  const onAdd = (data) => {
+    setCartItems([...cartItems, { ...data, quantity: 1 }]);
+    console.log("data", data)
+    setTotal(total+data.price)
+  };
+  console.log("cartitems", cartItems)
+  console.log("total is" , total)
+
   return(
       <div className='App'>
         
       <BrowserRouter>
       <Routes>
         <Route path='/' element = {<Login />}></Route>  
-        <Route path='/Products' element = {<Products />}></Route>
-        <Route path="/ProductDetails" element={<ProductDetails/>}></Route>
+        <Route path='/Products' element = {<Products onAdd={onAdd} cartItems={cartItems} />}></Route>
+        <Route path="/ProductDetails" element={<ProductDetails />}></Route>
+        <Route path="/CartPage" element={<Cartpage cartItems={cartItems} total={total}/>}></Route>
       </Routes>
       </BrowserRouter>
       {/* <ProductContext><ProductDetails/></ProductContext> */}

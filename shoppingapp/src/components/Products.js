@@ -7,7 +7,7 @@ import Addtocart from './Addtocart';
 
 
 
-const Products = () => {
+const Products = ({onAdd,cartItems}) => {
 
 
     // const allProducts = productsdata.products
@@ -18,7 +18,11 @@ const Products = () => {
     const [countItems, setCountItems] = useState(0)
     const [addItem, setAddItem]       = useState()
     console.log("additem" ,addItem)
-  
+
+    const data = "shehbaz waasi"
+
+    const inCart = []
+    console.log("inCart", inCart)
 
     useEffect (()=>{
       const all =  async() =>{
@@ -53,7 +57,7 @@ const Products = () => {
     <div >
       <div>
         {/* <Navbar/> */}
-        <Addtocart count={countItems}/>
+        <Link to="/CartPage"><Addtocart count={countItems} onAdd={onAdd} cartItems={cartItems} /></Link>
         {sidebar}
       </div>
       <div className='allProducts' >
@@ -83,7 +87,10 @@ const Products = () => {
                 </button>
 
                 <div>
-                  <button className='cart-btn' onClick={()=>{setCountItems(countItems+1); setAddItem(singleProduct)}}>Add to Cart</button>
+                  <button className='cart-btn' onClick={(e)=>{
+                            e.preventDefault()
+                            setCountItems(countItems+1)
+                            onAdd(singleProduct)}}>Add to Cart</button>
                 </div>
             </div> 
         ))}

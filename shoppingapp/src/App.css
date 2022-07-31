@@ -164,3 +164,38 @@ form{
   color:aliceblue;
   padding: 3px;
 }
+
+.img-in-cart{
+  width: 100px;
+  height: 100px;
+}
+
+
+.table-cart{
+  border: 1px solid;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  min-width: 1100px;
+  min-height: 150px;
+  padding: 50px;
+  position: relative;
+  top: 50px;
+  left: 145px;
+  border: solid #ccc 1px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 1px 1px #ccc;
+  -moz-box-shadow: 0 1px 1px #ccc;
+  box-shadow: 0 1px 1px #ccc;
+}
+
+.table-cart tbody tr{
+  border-bottom: 1px solid #dddddd;
+}
+
+.total-price{
+  position: relative;
+  top:60px;
+  left:50%
+}
