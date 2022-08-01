@@ -57,7 +57,7 @@ const Products = ({onAdd,cartItems}) => {
     <div >
       <div>
         {/* <Navbar/> */}
-        <Link to="/CartPage"><Addtocart count={countItems} onAdd={onAdd} cartItems={cartItems} /></Link>
+        <Addtocart count={countItems} onAdd={onAdd} cartItems={cartItems} />
         {sidebar}
       </div>
       <div className='allProducts' >

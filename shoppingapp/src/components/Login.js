@@ -28,7 +28,7 @@ const Login = () => {
   return (
     <>
     <div className='login'>
-    <form action="" onSubmit={submitForm}>
+    <form action="" className='login-form' onSubmit={submitForm}>
         <div className='email'>
             <label htmlFor="email">Email:</label>
             <input type="email" name='email' id='email' autoComplete='off' value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="enter your email" />

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Cartpage = ({cartItems,total}) => {
   console.log("render", cartItems)
@@ -33,7 +34,7 @@ const Cartpage = ({cartItems,total}) => {
         </tbody>
       </table>
     </div>
-    <h3 className='total-price'>Total price : {total}</h3>   
+    <h3 className='total-price'>Total price : {total} <Link to="/PlaceOrder"><button>checkout</button></Link></h3>   
     </>
   )
 }
