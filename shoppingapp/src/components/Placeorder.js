@@ -30,6 +30,7 @@ const Placeorder = ({onOrder}) => {
             <input className='address-box' type="text"
               placeholder='enter the address'
               value={address}
+              minLength="10"
               onChange={(e)=>setAddress(e.target.value)}
              />
              {error!==""?<p>{error}</p>:""}
