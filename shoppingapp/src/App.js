@@ -34,6 +34,10 @@ function App()  {
     setCountItems(data)
   }
 
+  const FinalTotal = (data) =>{
+    setTotal(total-data)
+  }
+
   return(
       <div className='App'>
       <BrowserRouter>
@@ -41,7 +45,7 @@ function App()  {
         <Route path='/' element = {<Login />}></Route>  
         <Route path='/Products' element = {<Products onAdd={onAdd} cartItems={cartItems} onCount={onCount}/>}></Route>
         <Route path="/ProductDetails" element={<ProductDetails/>}></Route>
-        <Route path="/CartPage" element={<Cartpage cartItems={cartItems} total={total} count={countItems}/>}></Route>
+        <Route path="/CartPage" element={<Cartpage cartItems={cartItems} total={total} count={countItems} FinalTotal={FinalTotal}/>}></Route>
         <Route path="/PlaceOrder" element={<Placeorder onOrder={onOrder}/>} ></Route>
         <Route path="/OrderPlaced" element={<Orderplaced address={orderAddress} total={total}/>} ></Route>
       </Routes>

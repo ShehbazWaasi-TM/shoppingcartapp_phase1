@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Addtocart from './Addtocart'
 import {AiFillDelete} from "react-icons/ai"
 
-const Cartpage = ({cartItems,total,count}) => {
+const Cartpage = ({cartItems,total,count,FinalTotal}) => {
   const [myCart,setMyCart] = useState(cartItems)
   const [newCount, setMyCount] = useState(count)
   console.log("render", cartItems)
@@ -14,12 +14,13 @@ const Cartpage = ({cartItems,total,count}) => {
   }
   
   //removeing product
-  const removeEle = (id) =>{
+  const removeEle = (cartItem) =>{
     const myNewCartItems = myCart.filter((ele)=>{
-      return ele.id !== id
+      return ele.id !== cartItem.id
     })
     setMyCart(myNewCartItems)
     setMyCount(newCount-1)
+    FinalTotal(cartItem.price)
   }
   return (
     <>
@@ -44,7 +45,7 @@ const Cartpage = ({cartItems,total,count}) => {
           <td>{cartItem.brand}</td>
           <td>rating {cartItem.rating}</td>
           <td>Price Rs: {cartItem.price}</td>
-          <td><button onClick={(()=>removeEle(cartItem.id))}><AiFillDelete/></button></td>
+          <td><button onClick={(()=>removeEle(cartItem))}><AiFillDelete/></button></td>
         </tr>
         )})}
         </tbody>
