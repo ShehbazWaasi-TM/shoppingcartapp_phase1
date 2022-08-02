@@ -7,7 +7,7 @@ import Addtocart from './Addtocart';
 
 
 
-const Products = ({onAdd,cartItems}) => {
+const Products = ({onAdd,cartItems,onCount}) => {
 
 
     // const allProducts = productsdata.products
@@ -47,8 +47,6 @@ const Products = ({onAdd,cartItems}) => {
       )
       }
 
-      
-
     let sidebar
     if (store!==undefined){
       sidebar = <Sidebar store={store} change={setStore} allItems={allData}/>
@@ -78,10 +76,6 @@ const Products = ({onAdd,cartItems}) => {
                      <h3>discount:{singleProduct.discountPercentage}%</h3>
                </div>
 
-               {/* <ProductContext.Provider value={singleProduct}>
-                          {Children}
-               </ProductContext.Provider> */}
-
                <button onClick={()=>setSelected(singleProduct)}>
                                       View Product Details
                 </button>
@@ -90,6 +84,7 @@ const Products = ({onAdd,cartItems}) => {
                   <button className='cart-btn' onClick={(e)=>{
                             e.preventDefault()
                             setCountItems(countItems+1)
+                            onCount(countItems+1)
                             onAdd(singleProduct)}}>Add to Cart</button>
                 </div>
             </div> 

@@ -1,11 +1,11 @@
 import React, { useState,createContext, Children } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import Orderplaced from './Orderplaced'
+import Addtocart from './Addtocart'
 
 const orderContext = createContext()
 
-const Placeorder = () => {
+const Placeorder = ({onOrder}) => {
     const history = useNavigate()
     const [address, setAddress] = useState("")
     const [error, setError] = useState("")
@@ -15,6 +15,7 @@ const Placeorder = () => {
         e.preventDefault()
         if (address!==""){
             history('/OrderPlaced')
+            onOrder(address)
         }
         else{
             setError("Fill the address")
@@ -22,6 +23,7 @@ const Placeorder = () => {
     }
   return (
     <div className='placeOrder'>
+      <Addtocart/>
         <form action="" className='place-order-form' onSubmit={orderReady} >
             <div>
             <label htmlFor="">Address:</label>
@@ -33,7 +35,7 @@ const Placeorder = () => {
              {error!==""?<p>{error}</p>:""}
             </div>
             <div>
-                <button type='submit' style={{"background-color":"green","color":"white"}}>Place order</button>
+                <button type='submit'>Place order</button>
             </div>
         </form>
       <Link to="/CartPage"><button>go back</button></Link>

@@ -1,18 +1,14 @@
-import React, { Children, useContext, useEffect } from 'react'
-import { orderContext } from './Placeorder'
+import React from 'react'
+import { FaCheckCircle} from "react-icons/fa";
 
-const Orderplaced = ({children
-}) => {
-    const address = useContext(orderContext)
-    console.log("order address", address)
-    console.log("hello")
+const Orderplaced = ({address,total}) => {
+  console.log("this is address", address)
   return (
-    <div>
+    <div  className="orderplaced">
+      <FaCheckCircle style={{"width":"150px", "height":"200px"}}/>
       <p>Order placed</p>
-      <h6>{address}</h6>
-      <orderContext.Provider value={"hello"}>
-          {children}               
-      </orderContext.Provider>
+      <h5>order is placed for rupees {total} successfully at the address {address}</h5>
+      
     </div>
   )
 }

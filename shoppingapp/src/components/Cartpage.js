@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import Addtocart from './Addtocart'
 
-const Cartpage = ({cartItems,total}) => {
+const Cartpage = ({cartItems,total,count}) => {
   console.log("render", cartItems)
   const history = useNavigate()
   const handleClick = () =>{
@@ -11,7 +12,9 @@ const Cartpage = ({cartItems,total}) => {
   return (
     <>
     <div className='mycart'>
+      <Addtocart cartItem={cartItems} count={count} />
       <button onClick={handleClick}>go back</button>
+      <div className="table-content">
       <table className='table-cart'>
         <thead>
           <tr>
@@ -33,6 +36,7 @@ const Cartpage = ({cartItems,total}) => {
         )})}
         </tbody>
       </table>
+      </div>
     </div>
     <h3 className='total-price'>Total price : {total} <Link to="/PlaceOrder"><button>checkout</button></Link></h3>   
     </>
